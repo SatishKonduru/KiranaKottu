@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+    --myPrimary : #c25b02;
+    --myBorder: 1px solid var(--myPrimary);
+    --myBoxShadow: 0 .2rem .5rem var(--myPrimary);
+}
+* {
+    font-family: "poppins", sans-serif;
+} 
+
+/* TailwindCSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* PrimeNg */
+@import "node_modules/primeng/resources/themes/bootstrap4-light-purple/theme.css";
+@import "node_modules/primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+

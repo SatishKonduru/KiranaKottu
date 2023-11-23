@@ -1,0 +1,37 @@
+<div class="card justify-content-center gap-1 px-2 mt-6">
+  <p-panel header="Products" [toggleable]="true" styleClass="myPanel">
+    <div class="card">
+      <p-carousel
+        [value]="products"
+        [numVisible]="3"
+        [numScroll]="1"
+        [responsiveOptions]="responsiveOptions"
+        [circular]="true"
+        autoplayInterval="2000"
+      >
+        <ng-template let-product pTemplate="item">
+          {{ product.name }}
+          <div class="mb-3">
+            <img
+              src="https://primefaces.org/cdn/primeng/images/demo/product/{{
+                product.image
+              }}"
+            />
+          </div>
+          <div>
+            <h4 class="mb-1">{{ product.name }}</h4>
+            <h6 class="mt-0 mb-3">{{ "₹" + product.price }}</h6>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+  </p-panel>
+
+  <!-- <p-panel header="Fashion" [toggleable]="true" styleClass="myPanel" class="py-3">
+    <p>Add your items here....</p>
+  </p-panel>
+
+  <p-panel header="Grocery" [toggleable]="true" styleClass="myPanel">
+    <p>Add your items here....</p>
+  </p-panel> -->
+</div>

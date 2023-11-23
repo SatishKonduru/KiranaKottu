@@ -1,0 +1,15 @@
+:host ::ng-deep{
+    .myPanel.p-panel{
+        .p-panel-header{
+           background: #c25b02;
+        }
+        .p-panel-title{
+            color: #fff;
+        }
+        .p-element{
+            background: #fff;
+            color: #000;
+        }
+        
+    }
+}
