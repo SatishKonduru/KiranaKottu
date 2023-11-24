@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit{
     header: 'OTP Verification',
     contentStyle: { overflow: 'auto' },
     baseZIndex: 10000,
-    maximizable: true
+    // maximizable: true
    } 
    this._userDialogService.openDynamicDialog(OtpComponent, dialogConfig)
     
