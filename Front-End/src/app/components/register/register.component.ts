@@ -18,7 +18,7 @@ import { UserMessageService } from 'src/app/services/user-message.service';
 export class RegisterComponent implements OnInit{
   registerForm : FormGroup;
   responseMsg: any;
-  isVisible : boolean = true
+  isVisible : boolean = true;
   constructor(private _formBuilder: FormBuilder, 
     private _userDialogService: DynamicDialogService, 
     private _userService: UserService,
@@ -36,11 +36,13 @@ export class RegisterComponent implements OnInit{
 
   getOtp(){ 
     this._ngxService.start()
+    
     // this._userDialogService.closeDynamicDialog()
     let user = this.registerForm.value;
     var data = {
       'email': user.email
     }
+    localStorage.setItem('email', data['email'])
    this._userService.getOtp(data)
    .subscribe((res)=>{
    this._ngxService.stop()
@@ -66,7 +68,7 @@ export class RegisterComponent implements OnInit{
     header: 'OTP Verification',
     contentStyle: { overflow: 'auto' },
     baseZIndex: 10000,
-} 
+  } 
   this._userDialogService.openDynamicDialog(OtpComponent, dialogConfig)
   this.isVisible = false
  }

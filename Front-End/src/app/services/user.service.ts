@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, retry } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -12,6 +12,12 @@ export class UserService {
 
   getOtp(data: any):Observable<any>{
    return this._http.post(this.apiURL+'/user/getOtp', data, {
+      headers: new HttpHeaders().set('Content-Type','application/json')
+    })
+  }
+
+  verifyOtp(data: any){
+    return this._http.post(this.apiURL+'/user/verifyOTP', data,{
       headers: new HttpHeaders().set('Content-Type','application/json')
     })
   }

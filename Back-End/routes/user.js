@@ -3,6 +3,12 @@ const connection  = require('../connection')
 const router = express.Router()  
 const nodemailer = require('nodemailer')
 
+
+
+let savedOTP = {
+    email: '',
+    otp: ''
+} ;
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -26,10 +32,27 @@ router.post('/getOtp',(req, res) => {
             res.status(401).json({message: 'Invalid Email address'})
         }
         else{
+            savedOTP.email = user['email'] 
+            savedOTP.otp = otp
+            setTimeout(()=>{
+                delete savedOTP
+            }, 60000)
             return res.status(200).json({message: 'OTP sent to your gmail.'})
         }
     })
 
 })
 
+
+router.post('/verifyOTP', (req,res) => {
+    var otpReceived = req.body.otp
+    var email = req.body.email
+    console.log("Email and OTP at Server: ", savedOTP)
+    if(savedOTP.email == email && savedOTP.otp == otpReceived){
+        return res.status(200).json({message: 'Verified'})
+    }
+    else{
+        return res.status(401).json({message: 'Invalid OTP'})
+    }
+})
 module.exports = router
