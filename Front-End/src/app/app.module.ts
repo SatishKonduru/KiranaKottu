@@ -16,7 +16,8 @@ import { DynamicDialogService } from './services/dynamic-dialog.service';
 import { OtpComponent } from './components/otp/otp.component';
 import {HttpClientModule} from '@angular/common/http';
 import { NgxUiLoaderModule, NgxUiLoaderConfig,SPINNER, PB_DIRECTION } from 'ngx-ui-loader';
-import { ArgumentOutOfRangeError } from 'rxjs';
+import { UserService } from './services/user.service';
+import { UserMessageService } from './services/user-message.service';
 
 
 
@@ -54,7 +55,11 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     HttpClientModule,
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
   ],
-  providers: [DynamicDialogService],
+  providers: [
+    DynamicDialogService,
+    UserService,
+    UserMessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

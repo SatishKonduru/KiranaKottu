@@ -36,8 +36,6 @@ export class RegisterComponent implements OnInit{
 
   getOtp(){ 
     this._ngxService.start()
-    
-    // this._userDialogService.closeDynamicDialog()
     let user = this.registerForm.value;
     var data = {
       'email': user.email
@@ -47,11 +45,8 @@ export class RegisterComponent implements OnInit{
    .subscribe((res)=>{
    this._ngxService.stop()
    this.responseMsg = res?.message
-    console.log("Response Message: ", this.responseMsg)
-    this._userMessage.openSuccessMessage(this.responseMsg)
-    // this._userDialogService.openDynamicDialog(OtpComponent, dialogConfig)
-  
-   }, (err)=>{
+   this._userMessage.openSuccessMessage(this.responseMsg)
+  }, (err)=>{
     this._ngxService.stop()
     if(err?.error.message){
       this.responseMsg = err?.error.message
@@ -71,6 +66,7 @@ export class RegisterComponent implements OnInit{
   } 
   this._userDialogService.openDynamicDialog(OtpComponent, dialogConfig)
   this.isVisible = false
+ 
  }
  userRegister(){
 

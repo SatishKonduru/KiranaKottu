@@ -16,7 +16,7 @@ export class UserService {
     })
   }
 
-  verifyOtp(data: any){
+  verifyOtp(data: any):Observable<any>{
     return this._http.post(this.apiURL+'/user/verifyOTP', data,{
       headers: new HttpHeaders().set('Content-Type','application/json')
     })

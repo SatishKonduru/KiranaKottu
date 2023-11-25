@@ -9,7 +9,6 @@ export class UserMessageService {
   constructor(private _userMsg: MessageService) { }
 
   openSuccessMessage(msg: any){
-    console.log("In Message SErvie: ", msg)
     this._userMsg.add({
       severity:'success', 
       summary: 'Success',

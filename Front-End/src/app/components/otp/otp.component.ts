@@ -29,6 +29,7 @@ constructor(private _userService: UserService,
       this.responseMsg = res?.message
       this._userMessage.openSuccessMessage(this.responseMsg)
       this._userDialogService.closeDynamicDialog()
+      localStorage.removeItem("email");
     },(err: any)=>{ 
       this._ngxService.stop()
       if(err?.error.message){
@@ -39,6 +40,7 @@ constructor(private _userService: UserService,
       }
       this._userMessage.openFailureMessage(this.responseMsg)
       this._userDialogService.closeDynamicDialog()
+      localStorage.removeItem("email");
     })
   }
 
