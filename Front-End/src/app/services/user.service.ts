@@ -11,8 +11,7 @@ export class UserService {
   constructor(private _http: HttpClient) { }
 
   getOtp(data: any):Observable<any>{
-    console.log("Email in OTP Service: ", data)
-    return this._http.post(this.apiURL+'/user/getOtp', data, {
+   return this._http.post(this.apiURL+'/user/getOtp', data, {
       headers: new HttpHeaders().set('Content-Type','application/json')
     })
   }

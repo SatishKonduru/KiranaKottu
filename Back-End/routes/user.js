@@ -26,7 +26,7 @@ router.post('/getOtp',(req, res) => {
             res.status(401).json({message: 'Invalid Email address'})
         }
         else{
-            return res.status(200).json({message: 'OTP sent to your gmail.'+result.response})
+            return res.status(200).json({message: 'OTP sent to your gmail.'})
         }
     })
 

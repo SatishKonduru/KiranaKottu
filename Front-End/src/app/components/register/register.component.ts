@@ -18,6 +18,7 @@ import { UserMessageService } from 'src/app/services/user-message.service';
 export class RegisterComponent implements OnInit{
   registerForm : FormGroup;
   responseMsg: any;
+  isVisible : boolean = true
   constructor(private _formBuilder: FormBuilder, 
     private _userDialogService: DynamicDialogService, 
     private _userService: UserService,
@@ -34,41 +35,42 @@ export class RegisterComponent implements OnInit{
   }
 
   getOtp(){ 
-    this._ngxService.stop()
-    this._userDialogService.closeDynamicDialog()
+    this._ngxService.start()
+    // this._userDialogService.closeDynamicDialog()
     let user = this.registerForm.value;
     var data = {
       'email': user.email
     }
-    console.log("User mail: ", data['email'])
-   this._ngxService.start()
    this._userService.getOtp(data)
    .subscribe((res)=>{
-   
+   this._ngxService.stop()
     let dialogConfig = {
       header: 'OTP Verification',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
-      // maximizable: true
-    } 
+  } 
     this.responseMsg = res?.message
+    console.log("Response Message: ", this.responseMsg)
     this._userMessage.openSuccessMessage(this.responseMsg)
-   this._userDialogService.openDynamicDialog(OtpComponent, dialogConfig)
-   
+    this._userDialogService.openDynamicDialog(OtpComponent, dialogConfig)
+  
    }, (err)=>{
     this._ngxService.stop()
-    if(err.error?.message){
-      this.responseMsg = err.error?.message
+    if(err?.error.message){
+      this.responseMsg = err?.error.message
     }
     else{
       this.responseMsg = globalProperties.genericError
-      this._userMessage.openFailureMessage(this.responseMsg)
-
     }
+    this._userMessage.openFailureMessage(this.responseMsg) 
 
    })
-   
-    
-  }
+ }
+ verifyOtp(){
+  this.isVisible = false
+ }
+ userRegister(){
+
+ }
 
 }
