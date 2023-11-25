@@ -44,15 +44,10 @@ export class RegisterComponent implements OnInit{
    this._userService.getOtp(data)
    .subscribe((res)=>{
    this._ngxService.stop()
-    let dialogConfig = {
-      header: 'OTP Verification',
-      contentStyle: { overflow: 'auto' },
-      baseZIndex: 10000,
-  } 
-    this.responseMsg = res?.message
+   this.responseMsg = res?.message
     console.log("Response Message: ", this.responseMsg)
     this._userMessage.openSuccessMessage(this.responseMsg)
-    this._userDialogService.openDynamicDialog(OtpComponent, dialogConfig)
+    // this._userDialogService.openDynamicDialog(OtpComponent, dialogConfig)
   
    }, (err)=>{
     this._ngxService.stop()
@@ -67,6 +62,12 @@ export class RegisterComponent implements OnInit{
    })
  }
  verifyOtp(){
+  let dialogConfig = {
+    header: 'OTP Verification',
+    contentStyle: { overflow: 'auto' },
+    baseZIndex: 10000,
+} 
+  this._userDialogService.openDynamicDialog(OtpComponent, dialogConfig)
   this.isVisible = false
  }
  userRegister(){
