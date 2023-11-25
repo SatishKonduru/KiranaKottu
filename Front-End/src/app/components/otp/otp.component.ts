@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { DynamicDialogService } from 'src/app/services/dynamic-dialog.service';
 import { UserMessageService } from 'src/app/services/user-message.service';
 import { UserService } from 'src/app/services/user.service';
 import { globalProperties } from 'src/app/shared/globlaProperties';
@@ -14,7 +15,8 @@ export class OtpComponent {
 responseMsg :any
 constructor(private _userService: UserService, 
   private _ngxService: NgxUiLoaderService,
-  private _userMessage: UserMessageService){}
+  private _userMessage: UserMessageService,
+  private _userDialogService: DynamicDialogService){}
   verify(otp: any){
     this._ngxService.start()
     let userEmail = localStorage.getItem('email') 
@@ -26,6 +28,7 @@ constructor(private _userService: UserService,
       this._ngxService.stop()
       this.responseMsg = res?.message
       this._userMessage.openSuccessMessage(this.responseMsg)
+      this._userDialogService.closeDynamicDialog()
     },(err: any)=>{ 
       this._ngxService.stop()
       if(err?.error.message){
@@ -35,6 +38,9 @@ constructor(private _userService: UserService,
         this.responseMsg = globalProperties.genericError
       }
       this._userMessage.openFailureMessage(this.responseMsg)
+      this._userDialogService.closeDynamicDialog()
     })
   }
+
+
 }
