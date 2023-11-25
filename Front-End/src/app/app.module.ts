@@ -14,6 +14,25 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DynamicDialogService } from './services/dynamic-dialog.service';
 import { OtpComponent } from './components/otp/otp.component';
+import {HttpClientModule} from '@angular/common/http';
+import { NgxUiLoaderModule, NgxUiLoaderConfig,SPINNER, PB_DIRECTION } from 'ngx-ui-loader';
+import { ArgumentOutOfRangeError } from 'rxjs';
+
+
+
+
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  text: "Loading....",
+  textColor: 'orange',
+  textPosition: 'center-center',
+  pbColor: 'orange',
+  bgsColor: 'orange',
+  fgsColor: 'orange',
+  fgsType: SPINNER.squareJellyBox,
+  fgsSize: 100,
+  pbDirection: PB_DIRECTION.leftToRight,
+  pbThickness: 5
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +50,9 @@ import { OtpComponent } from './components/otp/otp.component';
     PrimeNgModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    HttpClientModule,
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
   ],
   providers: [DynamicDialogService],
   bootstrap: [AppComponent]

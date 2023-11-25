@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit{
   }
 
   signUp(){
-    
     this.userDialogService.closeDynamicDialog()
     let dialogConfig = {
       header: 'Register',
