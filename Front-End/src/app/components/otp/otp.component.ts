@@ -18,7 +18,7 @@ constructor(private _userService: UserService,
   private _userMessage: UserMessageService,
   private _userDialogService: DynamicDialogService){}
   verify(otp: any){
-    this._ngxService.start()
+  this._ngxService.start()
     let userEmail = localStorage.getItem('email') 
     let data = {
       email: userEmail,
@@ -30,6 +30,7 @@ constructor(private _userService: UserService,
       this._userMessage.openSuccessMessage(this.responseMsg)
       this._userDialogService.closeDynamicDialog()
       localStorage.removeItem("email");
+      this._userService.visbility.next(false)
     },(err: any)=>{ 
       this._ngxService.stop()
       if(err?.error.message){

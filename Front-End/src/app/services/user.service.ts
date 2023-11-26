@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, retry } from 'rxjs';
+import { BehaviorSubject, Observable, retry } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  public visbility = new BehaviorSubject<boolean>(true)
   public apiURL = environment.apiURL
   constructor(private _http: HttpClient) { }
 
