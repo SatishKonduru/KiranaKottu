@@ -28,7 +28,7 @@ constructor(private _userService: UserService,
       this._ngxService.stop()
       this.responseMsg = res?.message
       this._userMessage.openSuccessMessage(this.responseMsg)
-      this._userDialogService.closeDynamicDialog()
+      this._userDialogService.closeDynamicDialog("OTP_PAGE")
       localStorage.removeItem("email");
       this._userService.visbility.next(false)
     },(err: any)=>{ 
@@ -40,7 +40,7 @@ constructor(private _userService: UserService,
         this.responseMsg = globalProperties.genericError
       }
       this._userMessage.openFailureMessage(this.responseMsg)
-      this._userDialogService.closeDynamicDialog()
+      this._userDialogService.closeDynamicDialog("OTP_PAGE")
       localStorage.removeItem("email");
     })
   }

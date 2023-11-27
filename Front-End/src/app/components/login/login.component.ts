@@ -33,15 +33,16 @@ export class LoginComponent implements OnInit{
   }
 
   signUp(){
-    this.userDialogService.closeDynamicDialog()
+    this.userDialogService.closeDynamicDialog("LOGIN_PAGE")
     let dialogConfig = {
       header: 'Register',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,
+      
       // width: '50vw',
       // style: { 'margin-left': 'auto', 'margin-right': '1rem' },
     } 
-    this.userDialogService.openDynamicDialog(RegisterComponent, dialogConfig)
+    this.userDialogService.openDynamicDialog(RegisterComponent, dialogConfig,"REGISTER_PAGE")
   }
 }

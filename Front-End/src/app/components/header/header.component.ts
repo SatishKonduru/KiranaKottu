@@ -20,7 +20,7 @@ export class HeaderComponent {
     maximizable: true,
     // style: { 'margin-left': 'auto', 'margin-right': '1rem' }
   } 
-  this.userDialogService.openDynamicDialog(LoginComponent, dialogConfig)
+  this.userDialogService.openDynamicDialog(LoginComponent, dialogConfig,"LOGIN_PAGE")
  
    }
 

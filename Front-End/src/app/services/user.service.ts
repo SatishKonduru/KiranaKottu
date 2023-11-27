@@ -23,4 +23,10 @@ export class UserService {
     })
   }
 
+  register(data: any):Observable<any>{
+    return this._http.post(this.apiURL+'/user/register',data,{
+      headers: new HttpHeaders().set('Content-Type','application/json')
+    })
+  }
+
 }

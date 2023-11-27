@@ -5,22 +5,22 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
   providedIn: 'root'
 })
 export class DynamicDialogService {
-  public dialogRef : DynamicDialogRef
+  public dialogRefs : { [id:string]: DynamicDialogRef } = {}
   constructor(private dialogService: DialogService) { }
   
-  openDynamicDialog(component: any, config : any) {
-    const ref: DynamicDialogRef = this.dialogService.open(component, config);
-    this.dialogRef = ref;
-   
-}
-
-closeDynamicDialog() {
-  // Check if the dialogRef is defined before trying to close it
-  if (this.dialogRef) {
-    this.dialogRef.destroy()
-    
+  openDynamicDialog(component: any, config : any, id: string) {
+   const dialogRef = this.dialogService.open(component, config);
+    this.dialogRefs[id] = dialogRef;
   }
-}
+
+closeDynamicDialog(id: string) {
+  const dialogRef = this.dialogRefs[id];
+  if (dialogRef) {
+    dialogRef.close();
+    delete this.dialogRefs[id];
+  }
+  }
+
 
 
   

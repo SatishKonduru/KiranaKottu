@@ -6,6 +6,7 @@ import { OtpComponent } from '../otp/otp.component';
 import { UserService } from 'src/app/services/user.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { UserMessageService } from 'src/app/services/user-message.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 
 
@@ -18,16 +19,19 @@ import { UserMessageService } from 'src/app/services/user-message.service';
 export class RegisterComponent implements OnInit{
   registerForm : FormGroup;
   responseMsg: any;
-  isVisible : boolean 
+  isVisible : boolean ;
+ 
   constructor(private _formBuilder: FormBuilder, 
     private _userDialogService: DynamicDialogService, 
     private _userService: UserService,
     private _ngxService: NgxUiLoaderService,
-    private _userMessage: UserMessageService){
+    private _userMessage: UserMessageService, 
+    private _snackbar: SnackbarService){
       this._userService.visbility.subscribe(val => this.isVisible = val)
     }
 
   ngOnInit(): void {
+    
     
     this.registerForm = this._formBuilder.group({
       username: [null,[Validators.required, Validators.pattern(globalProperties.nameRegex)]],
@@ -67,14 +71,36 @@ export class RegisterComponent implements OnInit{
     contentStyle: { overflow: 'auto' },
     baseZIndex: 10000,
   } 
-  this._userDialogService.openDynamicDialog(OtpComponent, dialogConfig)
-  // this.isVisible = false
-  console.log("Visibility: ", this.isVisible)
+  this._userDialogService.openDynamicDialog(OtpComponent, dialogConfig, "OTP_PAGE")
+
  
  }
  userRegister(){
-
- }
+  this._ngxService.start()
+  let formData = this.registerForm.value
+  let userDetails = {
+    username: formData.username,
+    password: formData.password,
+    email: formData.email,
+    contactNumber: formData.contactNumber
+  }
+  this._userService.register(userDetails)
+  .subscribe((res: any) => {
+    this._ngxService.stop()
+    this.responseMsg = res?.message;
+    this._snackbar.openSnackbar(this.responseMsg,'')
+    this._userDialogService.closeDynamicDialog("REGISTER_PAGE")
+  },(err:any)=>{
+    this._ngxService.stop()
+    if(err?.error.message){
+      this.responseMsg = err?.error.message
+    }
+    else{
+      this.responseMsg = globalProperties.genericError
+    }
+    this._snackbar.openSnackbar(this.responseMsg,globalProperties.error)
+  })
+}
 
 
 
