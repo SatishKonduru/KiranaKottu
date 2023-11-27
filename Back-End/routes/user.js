@@ -114,5 +114,37 @@ router.post('/login',(req, res) => {
     })
 })
 
+router.post('/forgotPassword', (req, res) => {
+    const user = req.body
+    query = "select email, password from user where email=?"
+    connection.query(query,[user.email],(err, results)=>{
+       if(!err){
+            if(results.length <= 0){
+                return res.status(200).json({message: 'Password sent to your Email'})
+            }
+            else{
+                var mailOptions={
+                    from: process.env.EMAIL,
+                    to: results[0].email,
+                    subject: 'Password for Login into KiranaKottu',
+                    html: "<p><b>password: </b><h1>"+results[0].password+"</h1></p>"
+                }
+                transporter.sendMail(mailOptions, (err, info) => {
+                    if(err){
+                        console.log(err)
+                    }
+                    else{
+                        console.log("Email Sent: ", info.response)
+                        return res.status(200).json({message: 'Password sent to your Gmail.'})
+                    }
+                })
+
+            }
+       }
+       else{
+        return res.status(500).json(err)
+       }
+    })
+})
 
 module.exports = router

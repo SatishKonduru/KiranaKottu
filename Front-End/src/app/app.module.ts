@@ -18,6 +18,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { NgxUiLoaderModule, NgxUiLoaderConfig,SPINNER, PB_DIRECTION } from 'ngx-ui-loader';
 import { UserService } from './services/user.service';
 import { UserMessageService } from './services/user-message.service';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 
 
@@ -42,7 +43,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
-    OtpComponent
+    OtpComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

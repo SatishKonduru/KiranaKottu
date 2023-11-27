@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { Router } from '@angular/router';
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 
 @Component({
   selector: 'app-login',
@@ -80,4 +81,19 @@ export class LoginComponent implements OnInit{
     } 
     this.userDialogService.openDynamicDialog(RegisterComponent, dialogConfig,"REGISTER_PAGE")
   }
+
+  forgotPassword(){
+   this.userDialogService.closeDynamicDialog('LOGIN_PAGE')
+   let dialogConfig = {
+    header: 'Forgot Password?',
+    contentStyle: { overflow: 'auto' },
+    baseZIndex: 10000,
+    maximizable: true
+  } 
+   this.userDialogService.openDynamicDialog(ForgotPasswordComponent,dialogConfig,"FORGOT_PAGE")
+  }
+
+
+
+
 }
