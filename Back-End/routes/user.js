@@ -2,7 +2,8 @@ const express =require('express')
 const connection  = require('../connection')
 const router = express.Router()  
 const nodemailer = require('nodemailer')
-
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 
 let savedOTP = {
@@ -84,7 +85,34 @@ router.post('/register', (req, res)=>{
 
 })
 
-
+router.post('/login',(req, res) => {
+    const user = req.body
+    query = "select email, password, status, role from user where email=?"
+    connection.query(query,[user.email],(err, results) => {
+        if(!err){
+            if(results.length <= 0 || results[0].password != user.password){
+                return res.status(401).json({message: 'Incorrect email/password'})
+            }
+            else if(results[0].status ==='false'){
+                return res.status(401).json({message: 'Wait for Admin Approval'})
+            }
+            else if(results[0].password == user.password){
+                const payLoad = {
+                    email: results[0].email,
+                    role: results[0].role
+                }
+                const accessToken = jwt.sign(payLoad, process.env.SECRET_KEY,{expiresIn: '2h'})
+                return res.status(200).json({token: accessToken, role: payLoad.role})
+            }
+            else{
+                return res.status(400).json({message:'Something Went Wrong!'})
+            }
+        }
+        else{
+            return res.status(500).json(err)
+        }
+    })
+})
 
 
 module.exports = router

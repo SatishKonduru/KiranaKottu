@@ -12,7 +12,7 @@ export class SnackbarService {
       this._snackbar.open(msg,'',{
         horizontalPosition: 'end',
         verticalPosition: 'top',
-        duration: 2000,
+        duration: 3000,
         panelClass: ['error-snackbar']
       })
     }
@@ -20,7 +20,7 @@ export class SnackbarService {
       this._snackbar.open(msg,'',{
         horizontalPosition: 'end',
         verticalPosition: 'top',
-        duration: 2000,
+        duration: 3000,
         panelClass: ['success-snackbar']
       })
     }

@@ -29,4 +29,10 @@ export class UserService {
     })
   }
 
+  login(data: any):Observable<any>{
+    return this._http.post(this.apiURL+'/user/login',data,{
+      headers: new HttpHeaders().set('Content-Type','application/json')
+    })
+  }
+
 }

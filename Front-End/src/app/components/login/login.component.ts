@@ -6,6 +6,10 @@ import { globalProperties } from 'src/app/shared/globlaProperties';
 import { RegisterComponent } from '../register/register.component';
 import { DialogRef } from '@angular/cdk/dialog';
 import { DynamicDialogService } from 'src/app/services/dynamic-dialog.service';
+import { UserService } from 'src/app/services/user.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { SnackbarService } from 'src/app/services/snackbar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,11 +19,15 @@ import { DynamicDialogService } from 'src/app/services/dynamic-dialog.service';
 export class LoginComponent implements OnInit{
 
   loginForm: any = FormGroup;
-  
+  responseMsg: any =''
 
   constructor(
     private _formBuilder: FormBuilder,
-     public userDialogService: DynamicDialogService
+     public userDialogService: DynamicDialogService,
+     private _userService: UserService,
+     private _ngxService: NgxUiLoaderService,
+     private _snackbar: SnackbarService,
+     private _router: Router
     ){}
   ngOnInit(): void {
     this.loginForm = this._formBuilder.group({
@@ -29,7 +37,34 @@ export class LoginComponent implements OnInit{
   }
 
   login(){
-    console.log(this.loginForm.value)
+    this._ngxService.start()
+    const formData = this.loginForm.value
+    const data = {
+      email: formData.email,
+      password: formData.password
+    }
+    this._userService.login(data)
+    .subscribe((res: any) =>{
+      this._ngxService.stop()
+      localStorage.setItem('token', res.token)
+      this.userDialogService.closeDynamicDialog('LOGIN_PAGE')
+      if(res.role === 'user')
+      {
+          this._router.navigate(['/kiranakottu/userDashboard'])
+      }
+      else{
+        this._router.navigate(['/kiranakottu/adminDashboard'])
+      }
+    }, (err: any)=>{
+      this._ngxService.stop()
+      if(err?.error.message){
+        this.responseMsg = err?.error.message
+      }
+      else{
+        this.responseMsg = globalProperties.genericError
+      }
+      this._snackbar.openSnackbar(this.responseMsg, globalProperties.error)
+    })
   }
 
   signUp(){
