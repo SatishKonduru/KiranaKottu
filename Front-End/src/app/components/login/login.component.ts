@@ -50,10 +50,10 @@ export class LoginComponent implements OnInit{
       this.userDialogService.closeDynamicDialog('LOGIN_PAGE')
       if(res.role === 'user')
       {
-          this._router.navigate(['/kiranakottu/userDashboard'])
+          this._router.navigate(['/kiranakottu/user/Dashboard'])
       }
       else{
-        this._router.navigate(['/kiranakottu/adminDashboard'])
+        this._router.navigate(['/kiranakottu/admin/Dashboard'])
       }
     }, (err: any)=>{
       this._ngxService.stop()
