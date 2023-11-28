@@ -19,6 +19,11 @@ import { NgxUiLoaderModule, NgxUiLoaderConfig,SPINNER, PB_DIRECTION } from 'ngx-
 import { UserService } from './services/user.service';
 import { UserMessageService } from './services/user-message.service';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { UserModule } from './modules/user/user.module';
+import { AdminModule } from './modules/admin/admin.module';
+import { UserRoutingModule } from './modules/user/user-routing.module';
+
+
 
 
 
@@ -55,7 +60,10 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ReactiveFormsModule,
     AngularMaterialModule,
     HttpClientModule,
-    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    UserModule,
+    AdminModule,
+   
   ],
   providers: [
     DynamicDialogService,

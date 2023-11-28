@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class UserService {
   public visbility = new BehaviorSubject<boolean>(true)
+  public isVisible: boolean = true;
   public apiURL = environment.apiURL
   constructor(private _http: HttpClient) { }
 
@@ -39,6 +40,16 @@ export class UserService {
     return this._http.post(this.apiURL+'/user/forgotPassword',data,{
       headers: new HttpHeaders().set('Content-Type','application/json')
     })
+  }
+
+  // Getter
+  // get status(): boolean {
+  //   return this.isVisible;
+  // }
+
+   // Setter
+   afterlogin() {
+    this.isVisible = false;
   }
 
 }
