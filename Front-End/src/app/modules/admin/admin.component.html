@@ -1,1 +1,10 @@
-<p>admin works!</p>
+<mat-drawer-container class="h-full">
+    <mat-drawer #drawer mode="side" opened class="sidenav" >
+      <a [routerLink]="'/admin/dashboard'">Dashboard</a><br>
+     
+    </mat-drawer>
+    <mat-drawer-content class="h-ful">
+      <mat-icon mat-icon-button (click)="drawer.toggle()" style="cursor: pointer;">menu</mat-icon>
+       <router-outlet></router-outlet>
+    </mat-drawer-content>
+</mat-drawer-container>

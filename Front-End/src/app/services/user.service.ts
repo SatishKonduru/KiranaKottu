@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class UserService {
   public visbility = new BehaviorSubject<boolean>(true)
-  public isVisible: boolean = true;
+  
   public apiURL = environment.apiURL
   constructor(private _http: HttpClient) { }
 
@@ -42,14 +42,6 @@ export class UserService {
     })
   }
 
-  // Getter
-  // get status(): boolean {
-  //   return this.isVisible;
-  // }
-
-   // Setter
-   afterlogin() {
-    this.isVisible = false;
-  }
+  
 
 }

@@ -7,10 +7,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
 
 
+
 @NgModule({
   declarations: [
     AdminComponent,
-    DashboardComponent
+    DashboardComponent,
+    
   ],
   imports: [
     CommonModule,

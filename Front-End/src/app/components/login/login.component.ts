@@ -49,13 +49,12 @@ export class LoginComponent implements OnInit{
       this._ngxService.stop()
       localStorage.setItem('token', res.token)
       this.userDialogService.closeDynamicDialog('LOGIN_PAGE')
-      this._userService.afterlogin()
       if(res.role === 'user')
       {
-          this._router.navigate(['/user/dashboard'])
+          this._router.navigate(['/user/'])
       }
       else{
-        this._router.navigate(['/admin/dashboard'])
+        this._router.navigate(['/admin/'])
       }
     }, (err: any)=>{
       this._ngxService.stop()

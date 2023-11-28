@@ -8,12 +8,6 @@ import { UserService } from './services/user.service';
 })
 export class AppComponent {
   title = 'kiranaKottu';
-  
-  constructor(private _userService: UserService){}
-  
-  get status(): boolean {
-    return this._userService.isVisible;
-    
-  }
-  
+   constructor(){}
+ 
 }

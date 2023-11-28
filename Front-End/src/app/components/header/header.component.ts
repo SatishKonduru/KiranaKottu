@@ -24,4 +24,13 @@ export class HeaderComponent {
  
    }
 
+   check(){
+    if(localStorage.getItem('token')){
+      return true
+    }
+    else{
+      return false
+    }
+   }
+
 }
