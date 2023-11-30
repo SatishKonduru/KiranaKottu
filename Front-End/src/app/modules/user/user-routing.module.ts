@@ -6,12 +6,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 const routes: Routes = [
   { 
     path: '', 
-    component: UserComponent 
+    component: UserComponent,
+    children: [
+      {
+        path:'dashboard',
+        component: DashboardComponent
+      }
+    ]
   },
-  {
-    path:'dashboard',
-    component: DashboardComponent
-  }
+  
 ];
 
 @NgModule({

@@ -1,0 +1,8 @@
+.mat-my-primary{
+    background: var(--myPrimary);
+    height: 40px;
+    font-size: 16px;
+    padding-top: 2px;
+    padding-left: 20px;
+    color: #fff;
+}

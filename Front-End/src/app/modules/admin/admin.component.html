@@ -3,8 +3,11 @@
       <a [routerLink]="'/admin/dashboard'">Dashboard</a><br>
      
     </mat-drawer>
-    <mat-drawer-content class="h-ful">
+    <mat-drawer-content class="h-full">
       <mat-icon mat-icon-button (click)="drawer.toggle()" style="cursor: pointer;">menu</mat-icon>
-       <router-outlet></router-outlet>
+      <div class="pl-10 ">
+          <router-outlet></router-outlet>
+      </div>
+       
     </mat-drawer-content>
 </mat-drawer-container>

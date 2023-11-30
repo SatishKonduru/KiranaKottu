@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { LoginComponent } from '../login/login.component';
 import { DynamicDialogService } from 'src/app/services/dynamic-dialog.service';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { LogoutComponent } from '../logout/logout.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,7 +12,9 @@ import { DynamicDialogService } from 'src/app/services/dynamic-dialog.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor(public userDialogService: DynamicDialogService  ){}
+  constructor(public userDialogService: DynamicDialogService ,
+    private _userDialog : MatDialog,
+       private _router: Router ){}
 
   showLogin() {
     
@@ -31,6 +36,21 @@ export class HeaderComponent {
     else{
       return false
     }
+   }
+
+   logout(){
+    var dialogConfig = new MatDialogConfig()
+    dialogConfig.width = '20rem'
+    dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+  let dialogRef = this._userDialog.open(LogoutComponent, dialogConfig)
+    dialogRef.afterClosed().subscribe(res=>{
+      if(res === 'yes'){
+        localStorage.clear()
+        this._router.navigate(['/home'])
+      }
+      else{}
+    })
    }
 
 }

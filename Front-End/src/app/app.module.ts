@@ -22,6 +22,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { UserModule } from './modules/user/user.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { UserRoutingModule } from './modules/user/user-routing.module';
+import { LogoutComponent } from './components/logout/logout.component';
 
 
 
@@ -49,7 +50,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     LoginComponent,
     RegisterComponent,
     OtpComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
