@@ -4,6 +4,7 @@ import { DynamicDialogService } from 'src/app/services/dynamic-dialog.service';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { LogoutComponent } from '../logout/logout.component';
 import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class HeaderComponent {
 
    check(){
     if(localStorage.getItem('token')){
-      return true
+        return true
     }
     else{
       return false

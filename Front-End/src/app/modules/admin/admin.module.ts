@@ -8,10 +8,11 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 
 
 
+
 @NgModule({
   declarations: [
     AdminComponent,
-    DashboardComponent,
+    DashboardComponent
     
   ],
   imports: [

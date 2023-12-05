@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { RouteGuardService } from 'src/app/services/route-guard.service';
 
 
 const routes: Routes = [
@@ -11,8 +12,12 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        component: DashboardComponent
-      }
+        component: DashboardComponent,
+        canActivate: [RouteGuardService],
+        data: {
+          expectedRole: ['admin']
+        }
+      },
     ]
   },
   

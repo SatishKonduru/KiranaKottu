@@ -14,7 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DynamicDialogService } from './services/dynamic-dialog.service';
 import { OtpComponent } from './components/otp/otp.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NgxUiLoaderModule, NgxUiLoaderConfig,SPINNER, PB_DIRECTION } from 'ngx-ui-loader';
 import { UserService } from './services/user.service';
 import { UserMessageService } from './services/user-message.service';
@@ -23,6 +23,10 @@ import { UserModule } from './modules/user/user.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { UserRoutingModule } from './modules/user/user-routing.module';
 import { LogoutComponent } from './components/logout/logout.component';
+import { DashboardService } from './services/dashboard.service';
+import { AuthService } from './services/auth.service';
+import { RouteGuardService } from './services/route-guard.service';
+import { TokenInterceptor } from './services/token.interceptor';
 
 
 
@@ -70,7 +74,15 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   providers: [
     DynamicDialogService,
     UserService,
-    UserMessageService
+    UserMessageService,
+    DashboardService,
+    AuthService,
+    RouteGuardService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
