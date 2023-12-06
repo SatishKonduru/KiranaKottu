@@ -1,4 +1,5 @@
 import {  Component} from '@angular/core';
+import { MenuItems } from 'src/app/shared/menuItems';
 
 
 @Component({
@@ -7,5 +8,5 @@ import {  Component} from '@angular/core';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
- 
+ constructor(public menuItems: MenuItems){}
 }

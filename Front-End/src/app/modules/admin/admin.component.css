@@ -3,3 +3,17 @@
     padding: 20px;
     background: var(--myPrimary);
 }
+.selected{
+    background-image: linear-gradient(to right, var(--myPrimary), #000);
+    border-radius: 0 40px 40px 0;
+}
+.listItem{
+    width: 95%;
+    padding-right: 0;
+    margin-bottom: 5px;
+    border-radius: 0 40px 40px 0;
+}
+.listItem:hover{
+    border-radius:  40px !important;
+    background-image: linear-gradient(to right, var(--myPrimary), #000);
+}

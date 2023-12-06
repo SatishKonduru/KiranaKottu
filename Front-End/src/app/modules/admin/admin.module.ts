@@ -5,6 +5,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
+import { MenuItems } from 'src/app/shared/menuItems';
 
 
 
@@ -19,6 +20,7 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
     CommonModule,
     AdminRoutingModule,
     AngularMaterialModule
-  ]
+  ],
+  providers: [MenuItems]
 })
 export class AdminModule { }
